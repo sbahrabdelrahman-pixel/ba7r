@@ -3,11 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll('.card');
     const numberOfCards = cards.length;
     
-    // تحديد عرض الكارت بناءً على حجم الشاشة (موبايل ولا كمبيوتر)
-    const cardWidth = window.innerWidth <= 768 ? 290 : 340;
+    // تحديد عرض الكارت والعمق بناءً على حجم الشاشة
+    const cardWidth = window.innerWidth <= 768 ? 260 : 340;
+    const extraRadius = window.innerWidth <= 768 ? 40 : 50;
     
     const theta = 360 / numberOfCards; 
-    const radius = Math.round((cardWidth / 2) / Math.tan(Math.PI / numberOfCards)) + 35; 
+    const radius = Math.round((cardWidth / 2) / Math.tan(Math.PI / numberOfCards)) + extraRadius; 
     
     let currentAngle = 0;
     
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     carousel.style.transform = `translateZ(${-radius}px) rotateY(0deg)`;
     
-    // السكرول بالماوس
+    // السكرول بالماوس (للكمبيوتر)
     window.addEventListener('wheel', (e) => {
         if (e.deltaY > 0) {
             rotateCarousel(-1);
@@ -32,18 +33,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     
-    // التاتش والسحب على الموبايل
+    // التاتش والسحب على الموبايل (مضبوط بـ isSwiping عشان يلف كارت واحد بس)
     let touchStartX = 0;
     let touchEndX = 0;
+    let isSwiping = false; 
     
     window.addEventListener('touchstart', e => {
         touchStartX = e.changedTouches[0].screenX;
+        isSwiping = false;
     }, {passive: true});
     
     window.addEventListener('touchend', e => {
         touchEndX = e.changedTouches[0].screenX;
-        if (touchEndX < touchStartX - 30) rotateCarousel(-1);
-        if (touchEndX > touchStartX + 30) rotateCarousel(1);
+        if (!isSwiping) {
+            if (touchEndX < touchStartX - 40) {
+                rotateCarousel(-1);
+                isSwiping = true;
+            }
+            if (touchEndX > touchStartX + 40) {
+                rotateCarousel(1);
+                isSwiping = true;
+            }
+        }
     }, {passive: true});
 
     // تغيير اللغة
