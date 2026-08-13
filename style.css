@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tajawal', sans-serif;
+}
+
+body {
+    /* التدرج الجديد: بينك فاتح جداً بياخد على بينك زاهي وفي الآخر لمسة أحمر شيك (صياعة) */
+    background: linear-gradient(135deg, #ffe5ec 0%, #ffb3c6 50%, #ff758c 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* زرار اللغة (هنسيبه شفاف عشان يفضل شيك) */
+.glass-btn {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 1000;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.glass-btn:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: translateY(-2px);
+}
+
+html[dir="ltr"] .glass-btn {
+    right: auto;
+    left: 30px;
+}
+
+.scene {
+    width: 340px;
+    height: 520px;
+    perspective: 1200px;
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* الكارت الشفاف بالكامل - العناصر طايرة */
+.card.glass {
+    position: absolute;
+    width: 340px;
+    height: 520px;
+    left: 0;
+    top: 0;
+    
+    /* شلنا الخلفية والحدود والظل والبلور تماماً */
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    
+    padding: 25px;
+    text-align: center;
+    color: #2c3e50; /* لون الكلام غامق عشان يبان على الخلفية الفاتحة */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+}
+
+/* ضفنا ظل للصور نفسها عشان تبان إنها طايرة بجد (3D) */
+.profile-img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+}
+
+.service-img {
+    width: 100%;
+    height: 180px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.card h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 5px;
+    color: #1a252f; /* لون العناوين غامق جداً */
+}
+
+.card h3 {
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #1a252f;
+}
+
+.title-role {
+    color: #d63031; /* أحمر ناري شيك جداً يليق مع الخلفية */
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.summary, .card p {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: 500;
+}
+
+.contact-info p {
+    font-size: 14px;
+    margin: 8px 0;
+    font-weight: 700;
+    color: #1a252f;
+}
