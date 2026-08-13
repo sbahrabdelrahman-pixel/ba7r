@@ -6,23 +6,22 @@
 }
 
 body {
-    /* التدرج الجديد: بينك فاتح جداً بياخد على بينك زاهي وفي الآخر لمسة أحمر شيك (صياعة) */
     background: linear-gradient(135deg, #ffe5ec 0%, #ffb3c6 50%, #ff758c 100%);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: hidden; /* يمنع اهتزاز الصفحة على الموبايل */
 }
 
-/* زرار اللغة (هنسيبه شفاف عشان يفضل شيك) */
+/* زرار اللغة */
 .glass-btn {
     position: fixed;
-    top: 30px;
-    right: 30px;
+    top: 20px;
+    right: 20px;
     z-index: 1000;
-    padding: 10px 25px;
-    font-size: 16px;
+    padding: 8px 20px;
+    font-size: 15px;
     font-weight: 700;
     color: #333;
     cursor: pointer;
@@ -37,14 +36,14 @@ body {
 
 .glass-btn:hover {
     background: rgba(255, 255, 255, 0.7);
-    transform: translateY(-2px);
 }
 
 html[dir="ltr"] .glass-btn {
     right: auto;
-    left: 30px;
+    left: 20px;
 }
 
+/* مسرح الـ 3D للكمبيوتر */
 .scene {
     width: 340px;
     height: 520px;
@@ -59,24 +58,18 @@ html[dir="ltr"] .glass-btn {
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* الكارت الشفاف بالكامل - العناصر طايرة */
+/* الكروت للكمبيوتر */
 .card.glass {
     position: absolute;
     width: 340px;
     height: 520px;
     left: 0;
     top: 0;
-    
-    /* شلنا الخلفية والحدود والظل والبلور تماماً */
     background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
     border: none;
-    box-shadow: none;
-    
     padding: 25px;
     text-align: center;
-    color: #2c3e50; /* لون الكلام غامق عشان يبان على الخلفية الفاتحة */
+    color: #2c3e50;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,15 +77,14 @@ html[dir="ltr"] .glass-btn {
     backface-visibility: hidden;
 }
 
-/* ضفنا ظل للصور نفسها عشان تبان إنها طايرة بجد (3D) */
 .profile-img {
     width: 130px;
     height: 130px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid rgba(255, 255, 255, 0.9);
-    margin-bottom: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+    margin-bottom: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
 .service-img {
@@ -100,7 +92,7 @@ html[dir="ltr"] .glass-btn {
     height: 180px;
     border-radius: 12px;
     object-fit: cover;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     border: 2px solid rgba(255, 255, 255, 0.8);
     box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
@@ -109,34 +101,87 @@ html[dir="ltr"] .glass-btn {
     font-size: 24px;
     font-weight: 800;
     margin-bottom: 5px;
-    color: #1a252f; /* لون العناوين غامق جداً */
+    color: #1a252f;
 }
 
 .card h3 {
     font-size: 21px;
     font-weight: 800;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     color: #1a252f;
 }
 
 .title-role {
-    color: #d63031; /* أحمر ناري شيك جداً يليق مع الخلفية */
+    color: #d63031;
     font-size: 17px;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .summary, .card p {
     font-size: 15px;
-    line-height: 1.7;
-    margin-bottom: 15px;
+    line-height: 1.6;
+    margin-bottom: 12px;
     color: #333;
     font-weight: 500;
 }
 
 .contact-info p {
     font-size: 14px;
-    margin: 8px 0;
+    margin: 6px 0;
     font-weight: 700;
     color: #1a252f;
+}
+
+/* ==========================================
+   📱 تعديلات خوارزمية الشاشة للموبايل (Responsive)
+   ========================================== */
+@media (max-width: 768px) {
+    .scene {
+        width: 290px;
+        height: 480px;
+        perspective: 800px; /* تقليل العمق للموبايل */
+    }
+
+    .card.glass {
+        width: 290px;
+        height: 480px;
+        padding: 15px;
+    }
+
+    .profile-img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+    }
+
+    .service-img {
+        height: 140px;
+        margin-bottom: 10px;
+    }
+
+    .card h2 {
+        font-size: 20px;
+    }
+
+    .card h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .title-role {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    .summary, .card p {
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 8px;
+    }
+
+    .contact-info p {
+        font-size: 12px;
+        margin: 4px 0;
+    }
 }
